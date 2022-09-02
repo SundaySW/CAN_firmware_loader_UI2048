@@ -1,0 +1,2 @@
+# Hashes of file build rules.
+a27f0ff3bdc6106220a603e3dc6eda4d CMakeFiles/CAN_firmware_loader_UI2048_autogen

@@ -1,0 +1,207 @@
+{
+	"BUILD_DIR" : "C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/cmake-build-release/CAN_firmware_loader_UI2048_autogen",
+	"CMAKE_BINARY_DIR" : "C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/cmake-build-release",
+	"CMAKE_CURRENT_BINARY_DIR" : "C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/cmake-build-release",
+	"CMAKE_CURRENT_SOURCE_DIR" : "C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048",
+	"CMAKE_EXECUTABLE" : "D:/installs/CLion 2020.1/bin/cmake/win/bin/cmake.exe",
+	"CMAKE_SOURCE_DIR" : "C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048",
+	"HEADERS" : 
+	[
+		[
+			"C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/FWLoader/DeviceHolder.hpp",
+			"MU",
+			"KOILDGFCOK/moc_DeviceHolder.cpp"
+		],
+		[
+			"C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/FWLoader/FWLoader.hpp",
+			"MU",
+			"KOILDGFCOK/moc_FWLoader.cpp"
+		],
+		[
+			"C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/Monitor/connection_dialog.h",
+			"MU",
+			"BOSZESRFLL/moc_connection_dialog.cpp"
+		],
+		[
+			"C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/Monitor/protos_message.h",
+			"MU",
+			"BOSZESRFLL/moc_protos_message.cpp"
+		],
+		[
+			"C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/Monitor/socket_adapter.h",
+			"MU",
+			"BOSZESRFLL/moc_socket_adapter.cpp"
+		],
+		[
+			"C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/Protos/fixed_packet.h",
+			"MU",
+			"ZZ5LFALXM7/moc_fixed_packet.cpp"
+		],
+		[
+			"C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/Protos/packet_asm.h",
+			"MU",
+			"ZZ5LFALXM7/moc_packet_asm.cpp"
+		],
+		[
+			"C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/Protos/packet_utils.h",
+			"MU",
+			"ZZ5LFALXM7/moc_packet_utils.cpp"
+		],
+		[
+			"C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/Protos/protos.h",
+			"MU",
+			"ZZ5LFALXM7/moc_protos.cpp"
+		],
+		[
+			"C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/Protos/protos_boot_msg.hpp",
+			"MU",
+			"ZZ5LFALXM7/moc_protos_boot_msg.cpp"
+		],
+		[
+			"C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/Protos/protos_misc_cmd.h",
+			"MU",
+			"ZZ5LFALXM7/moc_protos_misc_cmd.cpp"
+		],
+		[
+			"C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/Protos/protos_msg.h",
+			"MU",
+			"ZZ5LFALXM7/moc_protos_msg.cpp"
+		],
+		[
+			"C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/Protos/protos_raw_msg.h",
+			"MU",
+			"ZZ5LFALXM7/moc_protos_raw_msg.cpp"
+		],
+		[
+			"C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/ProtosServerUI/log_table_model.h",
+			"MU",
+			"ZS2W6GL2VC/moc_log_table_model.cpp"
+		],
+		[
+			"C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/ProtosServerUI/log_view.h",
+			"MU",
+			"ZS2W6GL2VC/moc_log_view.cpp"
+		],
+		[
+			"C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/main_window.h",
+			"MU",
+			"EWIEGA46WW/moc_main_window.cpp"
+		]
+	],
+	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
+	"INCLUDE_DIR" : "C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/cmake-build-release/CAN_firmware_loader_UI2048_autogen/include",
+	"MOC_COMPILATION_FILE" : "C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/cmake-build-release/CAN_firmware_loader_UI2048_autogen/mocs_compilation.cpp",
+	"MOC_DEFINITIONS" : 
+	[
+		"QT_CORE_LIB",
+		"QT_GUI_LIB",
+		"QT_NETWORK_LIB",
+		"QT_NO_DEBUG",
+		"QT_SERIALPORT_LIB",
+		"QT_WIDGETS_LIB"
+	],
+	"MOC_DEPEND_FILTERS" : 
+	[
+		[
+			"Q_PLUGIN_METADATA",
+			"[\n][ \t]*Q_PLUGIN_METADATA[ \t]*\\([^\\)]*FILE[ \t]*\"([^\"]+)\""
+		]
+	],
+	"MOC_INCLUDES" : 
+	[
+		"C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/cmake-build-release",
+		"C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048",
+		"C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/ProtosServer",
+		"C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/ProtosServerUI",
+		"C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/Protos",
+		"C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/Monitor",
+		"D:/Qt/5.15.2/mingw81_64/include",
+		"D:/Qt/5.15.2/mingw81_64/include/QtCore",
+		"D:/Qt/5.15.2/mingw81_64/mkspecs/win32-g++",
+		"D:/Qt/5.15.2/mingw81_64/include/QtGui",
+		"D:/Qt/5.15.2/mingw81_64/include/QtANGLE",
+		"D:/Qt/5.15.2/mingw81_64/include/QtWidgets",
+		"D:/Qt/5.15.2/mingw81_64/include/QtNetwork",
+		"D:/Qt/5.15.2/mingw81_64/include/QtSerialPort",
+		"C:/MinGW_64/include/c++/8.5.0",
+		"C:/MinGW_64/include/c++/8.5.0/x86_64-w64-mingw32",
+		"C:/MinGW_64/include/c++/8.5.0/backward",
+		"C:/MinGW_64/lib/gcc/x86_64-w64-mingw32/8.5.0/include",
+		"C:/MinGW_64/include",
+		"C:/MinGW_64/lib/gcc/x86_64-w64-mingw32/8.5.0/include-fixed",
+		"C:/MinGW_64/x86_64-w64-mingw32/include"
+	],
+	"MOC_MACRO_NAMES" : [ "Q_OBJECT", "Q_GADGET", "Q_NAMESPACE", "Q_NAMESPACE_EXPORT" ],
+	"MOC_OPTIONS" : [],
+	"MOC_PATH_PREFIX" : true,
+	"MOC_PREDEFS_CMD" : 
+	[
+		"C:/MinGW_64/bin/g++.exe",
+		"-dM",
+		"-E",
+		"-c",
+		"D:/installs/CLion 2020.1/bin/cmake/win/share/cmake-3.16/Modules/CMakeCXXCompilerABI.cpp"
+	],
+	"MOC_PREDEFS_FILE" : "C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/cmake-build-release/CAN_firmware_loader_UI2048_autogen/moc_predefs.h",
+	"MOC_RELAXED_MODE" : false,
+	"MOC_SKIP" : [],
+	"MULTI_CONFIG" : false,
+	"PARALLEL" : 4,
+	"PARSE_CACHE_FILE" : "C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/cmake-build-release/CMakeFiles/CAN_firmware_loader_UI2048_autogen.dir/ParseCache.txt",
+	"QT_MOC_EXECUTABLE" : "D:/Qt/5.15.2/mingw81_64/bin/moc.exe",
+	"QT_UIC_EXECUTABLE" : "D:/Qt/5.15.2/mingw81_64/bin/uic.exe",
+	"QT_VERSION_MAJOR" : 5,
+	"SETTINGS_FILE" : "C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/cmake-build-release/CMakeFiles/CAN_firmware_loader_UI2048_autogen.dir/AutogenUsed.txt",
+	"SOURCES" : 
+	[
+		[
+			"C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/FWLoader/DeviceHolder.cpp",
+			"MU"
+		],
+		[
+			"C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/FWLoader/FWLoader.cpp",
+			"MU"
+		],
+		[
+			"C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/Monitor/connection_dialog.cpp",
+			"MU"
+		],
+		[
+			"C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/Monitor/protos_message.cpp",
+			"MU"
+		],
+		[
+			"C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/Monitor/socket_adapter.cpp",
+			"MU"
+		],
+		[
+			"C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/Protos/packet_utils.cpp",
+			"MU"
+		],
+		[
+			"C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/Protos/protos_msg.cpp",
+			"MU"
+		],
+		[
+			"C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/ProtosServerUI/log_table_model.cpp",
+			"MU"
+		],
+		[
+			"C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/ProtosServerUI/log_view.cpp",
+			"MU"
+		],
+		[
+			"C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/main.cpp",
+			"MU"
+		],
+		[
+			"C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/main_window.cpp",
+			"MU"
+		]
+	],
+	"UIC_OPTIONS" : [],
+	"UIC_SEARCH_PATHS" : [],
+	"UIC_SKIP" : [],
+	"UIC_UI_FILES" : [],
+	"VERBOSITY" : 0
+}

@@ -1,0 +1,4 @@
+C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/cmake-build-release/CMakeFiles/edit_cache.dir
+C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/cmake-build-release/CMakeFiles/CAN_firmware_loader_UI2048.dir
+C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/cmake-build-release/CMakeFiles/rebuild_cache.dir
+C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/cmake-build-release/CMakeFiles/CAN_firmware_loader_UI2048_autogen.dir

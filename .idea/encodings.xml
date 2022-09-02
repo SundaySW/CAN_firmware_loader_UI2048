@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/ProtosServer/pica_port.cpp" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/ProtosServer/protos_transporter.cpp" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/ProtosServer/protos_transporter.h" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/ProtosServer/server_app.cpp" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/ProtosServer/server_app.h" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/ProtosServer/server_conf.cpp" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/ProtosServer/usb_can_m2.cpp" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/ProtosServerUI/conf_dlg.cpp" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/ProtosServerUI/log_table_model.cpp" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/ProtosServerUI/log_view.cpp" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/ProtosServerUI/qcmd_view.h" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/main_window.cpp" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/protos_message.h" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/protos_message.h" charset="windows-1251" />
+  </component>
+</project>

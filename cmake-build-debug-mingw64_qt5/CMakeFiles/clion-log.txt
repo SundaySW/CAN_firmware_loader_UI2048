@@ -1,0 +1,4 @@
+"D:\installs\CLion 2020.1\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" C:\Users\outlaw\CLionProjects\CAN_firmware_loader_UI2048
+-- Configuring done
+-- Generating done
+-- Build files have been written to: C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/cmake-build-debug-mingw64_qt5
