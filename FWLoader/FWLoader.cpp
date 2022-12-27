@@ -63,12 +63,8 @@ void FWLoader::ParseBootMsg(const ProtosMessage& msg) {
 }
 
 void FWLoader::transmitBlock(uint uid) {
-//    while (busy){}
-    if(deviceList.contains(uid)) {
-//        busy = true;
+    if(deviceList.contains(uid))
         deviceList[uid].transmitBlock();
-//        busy = false;
-    }
 }
 
 void FWLoader::cancelFWLoad(uint uid) {

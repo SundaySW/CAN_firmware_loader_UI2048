@@ -1,3 +1,0 @@
-"D:\installs\CLion 2020.1\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\CAN_firmware_loader_UI2048.dir/objects.a
-C:\MinGW_64\bin\ar.exe cr CMakeFiles\CAN_firmware_loader_UI2048.dir/objects.a @CMakeFiles\CAN_firmware_loader_UI2048.dir\objects1.rsp
-C:\MinGW_64\bin\g++.exe -O3 -DNDEBUG   -Wl,--whole-archive CMakeFiles\CAN_firmware_loader_UI2048.dir/objects.a -Wl,--no-whole-archive  -o CAN_firmware_loader_UI2048.exe -Wl,--out-implib,libCAN_firmware_loader_UI2048.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\CAN_firmware_loader_UI2048.dir\linklibs.rsp

@@ -1,4 +1,0 @@
-C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/cmake-build-debug-mingw64_qt5/CMakeFiles/edit_cache.dir
-C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/cmake-build-debug-mingw64_qt5/CMakeFiles/CAN_firmware_loader_UI2048.dir
-C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/cmake-build-debug-mingw64_qt5/CMakeFiles/rebuild_cache.dir
-C:/Users/outlaw/CLionProjects/CAN_firmware_loader_UI2048/cmake-build-debug-mingw64_qt5/CMakeFiles/CAN_firmware_loader_UI2048_autogen.dir

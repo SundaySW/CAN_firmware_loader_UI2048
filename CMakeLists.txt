@@ -1,12 +1,14 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(CAN_firmware_loader_UI2048 C CXX ASM)
+project(CAN_firmware_loader C CXX ASM)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 #if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 #    enable_language("RC")
