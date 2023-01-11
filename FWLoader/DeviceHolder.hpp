@@ -25,17 +25,19 @@ public:
     std::function<void(uint uid, int msecs)> finishedDevice;
 
     DeviceHolder() = default;
-    DeviceHolder(const QString& fileName, uchar address, uint uid, uchar uidT);
+    DeviceHolder(const QString&, uchar, uint, uchar, uchar);
     bool transmitBlock();
     void ackReceived();
     void missedPackets(uint8_t from, uint8_t len, uint16_t targetBlockNum);
     void unvalidatedBlock(uint16_t targetBlockNum);
     void blockOK(uint receivedBlockNum);
+    bool isLastBlock();
     void manageBlock(uint receivedBlockNum);
     uint getStatusBarData() const;
     void finishProcess();
     void restart();
     void sendJumpToBootmsg();
+    void finishDevice();
 
 protected:
 private:
@@ -49,6 +51,7 @@ private:
     QDataStream* fileDataStream;
     bool dataPending;
     QElapsedTimer elapsedTimer;
+    uchar loadingSWVer = 0;
 
     bool setBlockSeekFile(uint16_t targetBlockNum, int nOfPackets = PACKETS_IN_BLOCK, int blockOffsetInPackets = 0);
     uint16_t calcCRC(int dataLen);

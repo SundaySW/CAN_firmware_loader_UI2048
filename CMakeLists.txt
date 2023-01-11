@@ -43,9 +43,33 @@ set(SOURCE_FILES
         ${SOURCES}
         )
 
+if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+    enable_language("RC")
+    set (WIN32_RESOURCES Resource/resource.rc)
+endif()
+
 add_executable(${PROJECT_NAME}
         ${SOURCE_FILES}
         )
+
+IF(CMAKE_BUILD_TYPE MATCHES Release)
+    message("Release build!")
+    set_property(TARGET ${PROJECT_NAME} PROPERTY WIN32_EXECUTABLE true)
+#    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/saved_params.json ${CMAKE_CURRENT_BINARY_DIR}/saved_params.json COPYONLY)
+#    add_custom_command(
+#            TARGET ${PROJECT_NAME} PRE_BUILD
+#            COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/qss/ ${CMAKE_CURRENT_BINARY_DIR}/qss/
+#            COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/logs/ ${CMAKE_CURRENT_BINARY_DIR}/logs/
+#            COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/appLogs/ ${CMAKE_CURRENT_BINARY_DIR}/appLogs/
+#            COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/psql_libs/lib ${CMAKE_CURRENT_BINARY_DIR}/
+#            COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/Resource/ ${CMAKE_CURRENT_BINARY_DIR}/Resource/
+#    )
+    add_custom_command(
+            TARGET ${PROJECT_NAME} POST_BUILD
+            COMMAND windeployqt "$<TARGET_FILE:${PROJECT_NAME}>"
+            VERBATIM
+    )
+ENDIF()
 
 target_include_directories(${PROJECT_NAME}
         PRIVATE

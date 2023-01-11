@@ -27,7 +27,7 @@ signals:
     void signalBootData(uint UID);
     void signalError(const QString& error, uint uid);
 public slots:
-    void addDevice(const QString &fileName, uchar addr, uint uid, uchar uidT);
+    void addDevice(const QString&, uchar, uint, uchar, uchar);
 
 private:
     void removeDevice(uint uid, int msecs);

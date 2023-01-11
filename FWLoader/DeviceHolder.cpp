@@ -5,11 +5,12 @@
 
 extern SocketAdapter Socket;
 
-DeviceHolder::DeviceHolder(const QString &fileName, uchar address, uint uid, uchar uidT):
+DeviceHolder::DeviceHolder(const QString &fileName, uchar address, uint uid, uchar uidT, uchar ver):
         Address(address),
         UID(uid),
         UIDType(uidT),
-        dataPending(false)
+        dataPending(false),
+        loadingSWVer(ver)
 {
     BABuffer = new QByteArray(BLOCK_SIZE_FLASH, 0xFF);
     fwFile = new QFile(fileName);
@@ -42,11 +43,8 @@ void DeviceHolder::processBlock(uint blockNum) {
         readyToSendSignal(UID);
     }
     else{
-        if(blockNum == (totalBlocks)){
-            sendFinishFlashMsg();
-            OnNextBlockSignal(100, UID, Address);
-            finishedDevice(UID, elapsedTimer.elapsed());
-        }
+        if(blockNum == (totalBlocks))
+            finishDevice();
         else errorSignal("Target sent blockNum out of range", UID);
     }
 }
@@ -144,6 +142,7 @@ void DeviceHolder::sendStayInBootmsg(){
     data[3] = Protos::BOOT_FC_STAY_IN_BOOT;
     data[4] = totalBlocks & 0xff;
     data[5] = (totalBlocks >> 8) & 0xff;
+    data[6] = loadingSWVer;
     sendBootmsg(data, UID, Protos::MSGTYPE_BOOT_FLOW);
 }
 
@@ -173,4 +172,14 @@ void DeviceHolder::sendBootmsg(uchar* data, uint32_t idBytes, uchar msgType){
     setAddrCRCMsg.BootLoader = ProtosMessage::BOOT;
 
     Socket.SendMsg(setAddrCRCMsg);
+}
+
+bool DeviceHolder::isLastBlock() {
+    return (currentBlock == totalBlocks-1);
+}
+
+void DeviceHolder::finishDevice() {
+    sendFinishFlashMsg();
+    OnNextBlockSignal(100, UID, Address);
+    finishedDevice(UID, elapsedTimer.elapsed());
 }

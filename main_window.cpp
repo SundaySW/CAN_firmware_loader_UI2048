@@ -50,7 +50,7 @@ MainWindow::MainWindow(int argv, char** argc, QWidget *parent)
     Socket.AddRxMsgHandler([this](const ProtosMessage& rxMsg) {	fwLoader->ParseBootMsg(rxMsg);});
     Socket.AddTxMsgHandler([this](const ProtosMessage& txMsg) { txMsgHandler(txMsg);});
 
-    if (!Socket.Connect("127.0.0.5", 3699, 1000)){
+    if (!Socket.Connect("127.0.0.1", 3699, 1000)){
         statusLabel->setText(tr("Cant connect to Server"));
         logView->AddMsg(tr("Cant connect to Server"));
     }
@@ -173,7 +173,9 @@ void MainWindow::ackInBootReceived() {
 }
 
 void MainWindow::finishedOk(uint uid, int msecs) {
-    logView->AddMsg(tr("On device UID:%1 successfully loaded new FW. Time spent(msecs): %2").arg(uid, 8, 16).arg(msecs));
+    QString msg = QString(tr("On device UID:%1 successfully loaded new FW. Time spent(msecs): %2").arg(uid, 8, 16).arg(msecs));
+    logView->AddMsg(msg);
+    statusLabel->setText(msg);
 }
 
 void MainWindow::getError(const QString &error, uint uid) {
@@ -220,8 +222,9 @@ void MainWindow::txMsgHandler(const ProtosMessage &txMsg)
 void MainWindow::openFile() {
     QDialog dlg(this);
     dlg.setWindowTitle(tr("AddDevice"));
-    auto *uid = new QLineEdit("FFFFFF", &dlg);
-    auto *addr = new QLineEdit("FF", &dlg);
+    auto *uid = new QLineEdit(lastUID, &dlg);
+    auto *addr = new QLineEdit(lasrADDR, &dlg);
+    auto *ver = new QLineEdit(SWVer, &dlg);
 
     auto *btn_box = new QDialogButtonBox(&dlg);
     btn_box->setStandardButtons(QDialogButtonBox::Ok);
@@ -230,19 +233,24 @@ void MainWindow::openFile() {
     auto *layout = new QFormLayout();
     layout->addRow(tr("UID: "), uid);
     layout->addRow(tr("ADDR: "), addr);
+    layout->addRow(tr("SW Ver: "), ver);
     layout->addWidget(btn_box);
 
     dlg.setLayout(layout);
     if(dlg.exec() == QDialog::Accepted) {
+        lasrADDR = addr->text();
+        lastUID = uid->text();
+        SWVer = ver->text();
         uint32_t uid24 = uid->text().toUInt(nullptr, 16);
         uint8_t addr8 = addr->text().toShort(nullptr, 16);
+        uchar version = ver->text().toShort(nullptr, 16);
         QString fileName = QFileDialog::getOpenFileName(this,
                                                         tr("Open Bin"), "/home", tr("Bin Files (*.bin)"));
 //            QString fileName = "D:\\u\\sa_pico_can.bin";
         QFile file(fileName);
         if (file.open(QIODevice::ReadWrite))
         {
-            fwLoader->addDevice(fileName, addr8, uid24,0x1);
+            fwLoader->addDevice(fileName, addr8, uid24,0x1, version);
             qDebug() << (tr("UID: %1 ADDR: %2 ").arg(uid24).arg(addr8));
             statusLabel->setText(tr("Device loaded UID: %1 ADDR: %2 ").arg(uid24, 8, 16).arg(addr8, 2,16));
             logView->AddMsg(tr("Device loaded UID: %1 ADDR: %2 ").arg(uid24, 8, 16).arg(addr8, 2,16));
@@ -320,7 +328,7 @@ void MainWindow::setDelayDlg() {
 void MainWindow::stopProcessDlg() {
     QDialog dlg(this);
     dlg.setWindowTitle(tr("Stop Process"));
-    auto *uid = new QLineEdit(tr("FFFFFF"), &dlg);
+    auto *uid = new QLineEdit(lastUID, &dlg);
     auto *btn_box = new QDialogButtonBox(&dlg);
     btn_box->setStandardButtons(QDialogButtonBox::Ok);
     connect(btn_box, &QDialogButtonBox::accepted, &dlg, &QDialog::accept);
@@ -335,4 +343,3 @@ void MainWindow::stopProcessDlg() {
     statusLabel->setText(tr("Aborted FW loading UID: %1").arg(uidValue, 8,16));
     logView->AddMsg(tr("Aborted FW loading UID: %1").arg(uidValue,8,16));
 }
-

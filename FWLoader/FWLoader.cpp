@@ -8,8 +8,8 @@ FWLoader::FWLoader()
 {
 }
 
-void FWLoader::addDevice(const QString &fileName, uchar addr, uint uid, uchar uidT) {
-    DeviceHolder device = DeviceHolder(fileName, addr, uid, uidT);
+void FWLoader::addDevice(const QString &fileName, uchar addr, uint uid, uchar uidT, uchar ver) {
+    DeviceHolder device = DeviceHolder(fileName, addr, uid, uidT, ver);
     device.OnNextBlockSignal = [this](uint delta, uint uid, uint addr){ signalNextBlock(delta, uid, addr); };
     device.readyToSendSignal = [this](uint UID){ signalBootData(UID); };
     device.errorSignal       = [this](const QString& error, uint uid){ signalError(error, uid); };
@@ -56,6 +56,8 @@ void FWLoader::ParseBootMsg(const ProtosMessage& msg) {
             }
         }
         else if (messageType == Protos::MSGTYPE_BOOT_ACK) {
+            if(device->isLastBlock())
+                device->finishDevice();
             signalAckReceived();
             device->ackReceived();
         }
