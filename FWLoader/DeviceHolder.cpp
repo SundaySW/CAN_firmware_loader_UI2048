@@ -59,7 +59,7 @@ inline bool DeviceHolder::setBlockSeekFile(uint16_t targetBlockNum, int nOfPacke
     return result;
 }
 
-void DeviceHolder::missedPackets(uint8_t from, uint8_t len, uint16_t targetBlockNum){
+void DeviceHolder::missedPackets(uint16_t from, uint8_t len, uint16_t targetBlockNum){
     setBlockSeekFile(targetBlockNum, len, from);
     dataPending = true;
     readyToSendSignal(UID);
@@ -67,7 +67,7 @@ void DeviceHolder::missedPackets(uint8_t from, uint8_t len, uint16_t targetBlock
 
 void DeviceHolder::ackReceived(){
     elapsedTimer.start();
-    sendStayInBootmsg();
+    SendStayInBootMsg();
     processBlock(0);
 }
 
@@ -82,7 +82,8 @@ inline uint16_t DeviceHolder::calcCRC(int dataLen) {
 void DeviceHolder::sendDataPackets(int len){
     uint32_t absByteNum = fileDataStream->device()->pos();
     uint32_t BABufferSize = BABuffer->size();
-    if(BABufferSize >= 0) absByteNum = absByteNum - BABufferSize;
+    if(BABufferSize >= 0)
+        absByteNum = absByteNum - BABufferSize;
     uint8_t bufferPacketData[8];
     uint packetNum = 0;
     for (int i = 0; i < len; ++i) {
@@ -134,7 +135,7 @@ void DeviceHolder::sendJumpToBootmsg(){
     sendBootmsg(data, UID, Protos::MSGTYPE_BOOT_BOOTREQ);
 }
 
-void DeviceHolder::sendStayInBootmsg(){
+void DeviceHolder::SendStayInBootMsg(){
     uchar data[8];
     data[0] = UIDType;
     data[1] = Address;
@@ -175,7 +176,7 @@ void DeviceHolder::sendBootmsg(uchar* data, uint32_t idBytes, uchar msgType){
 }
 
 bool DeviceHolder::isLastBlock() {
-    return (currentBlock == totalBlocks-1);
+    return (currentBlock == (totalBlocks - 1));
 }
 
 void DeviceHolder::finishDevice() {

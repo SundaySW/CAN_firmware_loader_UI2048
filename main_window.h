@@ -33,5 +33,5 @@ class MainWindow : public QMainWindow
         FWLoader* fwLoader;
         std::unique_ptr<ConnectionDialog> Dlg;
         void txMsgHandler(const ProtosMessage &txMsg);
-        QString lastUID = "FFFFFF", lasrADDR = "FF", SWVer = "0";
+        QString lastUID = "0", lasrADDR = "0", SWVer = "0";
 };

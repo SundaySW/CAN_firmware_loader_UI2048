@@ -55,7 +55,7 @@ private slots:
 	void on_TimeoutTimer_timeout();
 
 private:	
-	int adapterDelay = 5;
+	int adapterDelay = 1;
 	enum
 	{
 		START_BYTE,
@@ -66,7 +66,7 @@ private:
 	};
 	QTcpSocket Socket;
 	ProtosMessage RxProtosMsg;
-	QList<ProtosMessage> TxMsgList;
+    QList<ProtosMessage> TxMsgList;
 	QList<std::function<void(const QString&)>> ErrorHandlerList;
 	QList<std::function<void(const ProtosMessage&)>> RxMsgHandlerList;
 	QList<std::function<void(const ProtosMessage&)>> TxMsgHandlerList;

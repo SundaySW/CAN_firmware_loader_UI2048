@@ -13,7 +13,7 @@
 #include <Protos/protos.h>
 #include <QtCore/QElapsedTimer>
 
-#define BLOCK_SIZE_FLASH    (512)
+#define BLOCK_SIZE_FLASH    (4096)
 #define BYTES_IN_PACKET     (8)
 #define PACKETS_IN_BLOCK    (BLOCK_SIZE_FLASH/BYTES_IN_PACKET)
 
@@ -28,7 +28,7 @@ public:
     DeviceHolder(const QString&, uchar, uint, uchar, uchar);
     bool transmitBlock();
     void ackReceived();
-    void missedPackets(uint8_t from, uint8_t len, uint16_t targetBlockNum);
+    void missedPackets(uint16_t from, uint8_t len, uint16_t targetBlockNum);
     void unvalidatedBlock(uint16_t targetBlockNum);
     void blockOK(uint receivedBlockNum);
     bool isLastBlock();
@@ -61,7 +61,7 @@ private:
     void sendAddrCRCmsg(int dataLen);
     void sendFinishFlashMsg();
 
-    void sendStayInBootmsg();
+    void SendStayInBootMsg();
     void processBlock(uint blockNum);
 };
 

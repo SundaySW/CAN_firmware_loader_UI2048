@@ -127,12 +127,12 @@ int SocketAdapter::GetMsgKey(const ProtosMessage& msg)
 
 bool SocketAdapter::IsConnected()
 {		
-	return Socket.state() == QAbstractSocket::ConnectedState ? true : false;
+	return Socket.state() == QAbstractSocket::ConnectedState;
 }
 
 bool SocketAdapter::IsStatusByteValid(const char& MsgType, const char& MsgLeng)
 {
-	return 0 < MsgLeng && MsgLeng <= MaxProtosMsgLeng ?  true : false;
+	return 0 < MsgLeng && MsgLeng <= MaxProtosMsgLeng;
 }
 
 void SocketAdapter::on_Socket_bytesWritten(qint64 bytes)
@@ -140,14 +140,14 @@ void SocketAdapter::on_Socket_bytesWritten(qint64 bytes)
 	std::lock_guard<std::mutex> txMsgMutexLocker(TxMsgMutex);
 	ProtosMessage& txProtosMessage = TxMsgList.front();
 	if (BytesToSend + ServiceBytesCnt == bytes)
-		TxMsgHandler(txProtosMessage);			
-	else
+        TxMsgHandler(txProtosMessage);
+    else
 		WriteErrorHandler();		
 	
 	TxMsgList.pop_front();
 	if (TxMsgList.size())
-//		WriteMsg();
-        QTimer::singleShot(adapterDelay, [this](){WriteMsg();});
+		WriteMsg();
+//        QTimer::singleShot(adapterDelay, [this](){WriteMsg();});
 //      for(int i = 0; i < 1399999; i++){}
 //      QThread::usleep(1);
 //      QThread::msleep(10);
@@ -272,8 +272,8 @@ void SocketAdapter::ReadingLoop()
 	while (ReadEn)
 	{
 		ReadEnMutex.unlock();		
-		if (Socket.waitForReadyRead(100))
-			ReadMsg();	
+		if(Socket.waitForReadyRead(100))
+			ReadMsg();
 		else if (!IsConnected())
 		{
 			QString errSt = tr("Host Server disconnected... :(");

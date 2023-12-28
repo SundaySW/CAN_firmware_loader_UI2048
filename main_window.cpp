@@ -50,7 +50,7 @@ MainWindow::MainWindow(int argv, char** argc, QWidget *parent)
     Socket.AddRxMsgHandler([this](const ProtosMessage& rxMsg) {	fwLoader->ParseBootMsg(rxMsg);});
     Socket.AddTxMsgHandler([this](const ProtosMessage& txMsg) { txMsgHandler(txMsg);});
 
-    if (!Socket.Connect("127.0.0.1", 3699, 1000)){
+    if (!Socket.Connect("192.168.1.99", 3699, 1000)){
         statusLabel->setText(tr("Cant connect to Server"));
         logView->AddMsg(tr("Cant connect to Server"));
     }
@@ -84,16 +84,6 @@ QToolBar* MainWindow::CreateToolbar()
     connect(loadDevice, &QAction::triggered, [this](bool checked)
     {
         openFile();
-    });
-
-    toolbar->addSeparator();
-    auto setDelay = toolbar->addAction(QIcon(), QString("Set Adapter Delay"));
-    setDelay->setObjectName("SetDelay");
-    setDelay->setCheckable(false);
-    setDelay->setToolTip(QStringLiteral("Изменить задержку отправки в коробку"));
-    connect(setDelay, &QAction::triggered, [this](bool checked)
-    {
-        setDelayDlg();
     });
 
     toolbar->addSeparator();
@@ -250,10 +240,13 @@ void MainWindow::openFile() {
         QFile file(fileName);
         if (file.open(QIODevice::ReadWrite))
         {
-            fwLoader->addDevice(fileName, addr8, uid24,0x1, version);
+            fwLoader->addDevice(fileName, addr8, uid24, 0x1, version);
             qDebug() << (tr("UID: %1 ADDR: %2 ").arg(uid24).arg(addr8));
             statusLabel->setText(tr("Device loaded UID: %1 ADDR: %2 ").arg(uid24, 8, 16).arg(addr8, 2,16));
             logView->AddMsg(tr("Device loaded UID: %1 ADDR: %2 ").arg(uid24, 8, 16).arg(addr8, 2,16));
+        }
+        else{
+            logView->AddMsg(tr("Failed to open file"));
         }
     } else{
         statusLabel->setText(tr("Aborted adding device"));
@@ -261,50 +254,50 @@ void MainWindow::openFile() {
     }
 }
 
-void MainWindow::sendMessage() {
-    char data[8] = {0};
-    data[0] = 0x1;
-    data[1] = 0xFF;
-    data[2] = 0x1;
-    data[3] = 0x1;
-    data[4] = 0x1;
-    data[5] = 0xFF;
-    data[6] = 0xFF;
-    data[7] = 0xFF;
-    uint idBytes = 0xffffff;
-    ProtosMessage setAddrCRCMsg(0, 0, ProtosMessage::MsgTypes::NONE, 8,
-                                data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7]);
-    setAddrCRCMsg.IdBytes[0] = idBytes & 0xff;
-    setAddrCRCMsg.IdBytes[1] = (idBytes >> 8) & 0xff;
-    setAddrCRCMsg.IdBytes[2] = (idBytes >> 16) & 0xff;
-    setAddrCRCMsg.IdBytes[3] = 0;
-    setAddrCRCMsg.BootMsgType = Protos::MSGTYPE_BOOT_ADDR_CRC;
-    setAddrCRCMsg.ProtocolType = ProtosMessage::RAW;
-    setAddrCRCMsg.BootLoader = ProtosMessage::BOOT;
-    Socket.SendMsg(setAddrCRCMsg);
-}
-int blockNum;
-void MainWindow::getMessage() {
-    char data[8] = {0};
-    data[0] = 0x1;
-    data[1] = 0xFF;
-    data[2] = Protos::BOOT_FC_FLAG_FC;
-    data[3] = Protos::BOOT_FC_BLOCK_OK;
-    data[6] = blockNum & 0xFF;
-    data[7] = (blockNum << 8) & 0xFF;
-    uint idBytes = 0xffffff;
-    ProtosMessage setAddrCRCMsg(0, 0, ProtosMessage::MsgTypes::NONE, 8,
-                                data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7]);
-    setAddrCRCMsg.IdBytes[0] = idBytes & 0xff;
-    setAddrCRCMsg.IdBytes[1] = (idBytes >> 8) & 0xff;
-    setAddrCRCMsg.IdBytes[2] = (idBytes >> 16) & 0xff;
-    setAddrCRCMsg.IdBytes[3] = 0;
-    setAddrCRCMsg.BootMsgType = Protos::MSGTYPE_BOOT_FLOW;
-    setAddrCRCMsg.ProtocolType = ProtosMessage::RAW;
-    setAddrCRCMsg.BootLoader = ProtosMessage::BOOT;
-    fwLoader->ParseBootMsg(setAddrCRCMsg);
-    blockNum = blockNum + 1;
-}
+//void MainWindow::sendMessage() {
+//    char data[8] = {0};
+//    data[0] = 0x1;
+//    data[1] = 0xFF;
+//    data[2] = 0x1;
+//    data[3] = 0x1;
+//    data[4] = 0x1;
+//    data[5] = 0xFF;
+//    data[6] = 0xFF;
+//    data[7] = 0xFF;
+//    uint idBytes = 0xffffff;
+//    ProtosMessage setAddrCRCMsg(0, 0, ProtosMessage::MsgTypes::NONE, 8,
+//                                data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7]);
+//    setAddrCRCMsg.IdBytes[0] = idBytes & 0xff;
+//    setAddrCRCMsg.IdBytes[1] = (idBytes >> 8) & 0xff;
+//    setAddrCRCMsg.IdBytes[2] = (idBytes >> 16) & 0xff;
+//    setAddrCRCMsg.IdBytes[3] = 0;
+//    setAddrCRCMsg.BootMsgType = Protos::MSGTYPE_BOOT_ADDR_CRC;
+//    setAddrCRCMsg.ProtocolType = ProtosMessage::RAW;
+//    setAddrCRCMsg.BootLoader = ProtosMessage::BOOT;
+//    Socket.SendMsg(setAddrCRCMsg);
+//}
+//int blockNum;
+//void MainWindow::getMessage() {
+//    char data[8] = {0};
+//    data[0] = 0x1;
+//    data[1] = 0xFF;
+//    data[2] = Protos::BOOT_FC_FLAG_FC;
+//    data[3] = Protos::BOOT_FC_BLOCK_OK;
+//    data[6] = blockNum & 0xFF;
+//    data[7] = (blockNum << 8) & 0xFF;
+//    uint idBytes = 0xffffff;
+//    ProtosMessage setAddrCRCMsg(0, 0, ProtosMessage::MsgTypes::NONE, 8,
+//                                data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7]);
+//    setAddrCRCMsg.IdBytes[0] = idBytes & 0xff;
+//    setAddrCRCMsg.IdBytes[1] = (idBytes >> 8) & 0xff;
+//    setAddrCRCMsg.IdBytes[2] = (idBytes >> 16) & 0xff;
+//    setAddrCRCMsg.IdBytes[3] = 0;
+//    setAddrCRCMsg.BootMsgType = Protos::MSGTYPE_BOOT_FLOW;
+//    setAddrCRCMsg.ProtocolType = ProtosMessage::RAW;
+//    setAddrCRCMsg.BootLoader = ProtosMessage::BOOT;
+//    fwLoader->ParseBootMsg(setAddrCRCMsg);
+//    blockNum = blockNum + 1;
+//}
 
 void MainWindow::setDelayDlg() {
     QDialog dlg(this);
